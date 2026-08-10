@@ -2,6 +2,10 @@
 
 Assumes ~2–3 focused hours/day, 5 days/week (adjust pace to your actual availability — the point is the order and the definition of "done" for each day, not the calendar). Each week states its goal first. Growth/adoption tasks are woven in throughout, not left to the end — a perfectly built app nobody knows about fails the same way a broken one does.
 
+## Product decisions log
+
+- **User model: single role, not a two-segment organiser/attendee split.** Every signed-in student can both attend and post — there's no separate "organiser account." What used to be "who can create an event" is handled by two lighter mechanisms instead: (1) the submission → admin-approval queue everyone already goes through, and (2) an optional **verified-organiser badge** shown on event cards when the poster is a recognised society/department, which is a trust signal, not an access gate. This keeps sign-up to one flow and matches how students actually use the app (the same person RSVPs, posts a partner-finding message, and sells their old lab coat).
+
 ---
 
 ## Phase 0 — Validate before you build (Week 1)
@@ -22,7 +26,7 @@ Assumes ~2–3 focused hours/day, 5 days/week (adjust pace to your actual availa
 
 - **Day 6** — `create-next-app` with TypeScript + Tailwind, push first commit, confirm CI workflow runs and passes
 - **Day 7** — Create Supabase project. Design the `events` table schema (title, description, category, start_time, end_time, venue_name, venue_address, organiser, source, status, created_by, created_at). Write the SQL migration, commit it under `supabase/migrations`
-- **Day 8** — Add `profiles`, `rsvps`, and `saved_events` tables with foreign keys to `events` and `auth.users`. Turn on Row-Level Security; write policies (read: anyone; write: authenticated + owns row)
+- **Day 8** — Add `profiles`, `rsvps`, and `saved_events` tables with foreign keys to `events` and `auth.users`. No separate role/account-type field — every profile can attend and submit by default. Add a single `is_verified_organiser boolean default false` (plus `verified_society_name`) on `profiles` for the badge in Day 17/Day 20, not a role split. Turn on Row-Level Security; write policies (read: anyone; write: authenticated + owns row)
 - **Day 9** — Wire up Supabase Auth magic-link sign-in restricted to `@uq.edu.au` / `@uqconnect.uq.edu.au` domains (reject others with a clear error message). Build the sign-in screen
 - **Day 10** — Deploy to Vercel, connect the domain, confirm auth works end-to-end in production, not just localhost. Merge PR #1, close first issues
 
@@ -38,8 +42,9 @@ Assumes ~2–3 focused hours/day, 5 days/week (adjust pace to your actual availa
 - **Day 14** — Add the "get directions" deep link (`https://www.google.com/maps/dir/?api=1&destination=...`) using `venue_address`. Test it actually opens Maps from a phone, not just desktop
 - **Day 15** — Add save/RSVP button + a "my events" view filtered to the signed-in user's saves
 - **Day 16** — Build the event submission form (title, description, category select, date/time pickers, venue text/address, organiser name) — write straight to `events` with `status = 'pending'` for now
-- **Day 17** — Build a minimal `/admin` route (protect it by checking your own user ID server-side) listing pending events with approve/reject buttons
+- **Day 17** — Build a minimal `/admin` route (protect it by checking your own user ID server-side) listing pending events with approve/reject buttons, plus a toggle to grant/revoke `is_verified_organiser` on a profile when a real society confirms who they are (manual for now — no self-serve verification flow yet)
 - **Day 18** — Add `.ics` calendar export on the event detail page (a saved event should be addable to the student's own calendar app in one tap)
+- **Day 18b** — Show the verified-organiser badge (small checkmark + society name) on event cards and the detail page when `is_verified_organiser` is true on the poster's profile — this is the only visible trace of the "who can post" decision anywhere in the UI
 - **Day 19** — Empty states, loading states, error states for every screen built so far — this is where "prototype" starts turning into "product"
 - **Day 20** — Mobile responsiveness pass on every screen built so far (test on an actual phone, not just devtools resize)
 - **Day 21** — Accessibility pass: keyboard navigation, focus states, alt text, color contrast check

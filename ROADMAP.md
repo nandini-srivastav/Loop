@@ -61,6 +61,14 @@ This is the hardest and most valuable part — see Section 4. Start the legal/To
 
 ---
 
+## 3.5. User model: single role, not organiser vs attendee
+
+Every signed-in student can both attend and post — there is no separate "organiser account" or sign-up fork. This matches how the app is actually used: the same student RSVPs to events, posts a partner-finding message, and lists an old lab coat for sale. Splitting that into two segments would add onboarding friction and undersell the peer-to-peer, grassroots growth model without adding real safety or clarity.
+
+What replaces a role split:
+- **Submission + moderation queue** (everyone submits into the same queue; you approve) does the actual gatekeeping on event quality
+- **A verified-organiser badge** — a boolean flag on a profile (`is_verified_organiser`), set manually by an admin once a real society/department confirms who they are — shown on event cards as a trust signal, not an access control. This can later grow into a self-serve claim flow for society accounts, but starts as a manual admin toggle
+
 ## 4. Data sourcing strategy (the actual hard problem)
 
 Aggregation is the whole product, so this deserves its own plan, not an afterthought.
