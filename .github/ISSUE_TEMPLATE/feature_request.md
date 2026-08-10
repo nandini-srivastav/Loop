@@ -14,4 +14,4 @@ e.g. "As a new student I can't tell which events are actually happening this wee
 
 
 **Which roadmap phase does this belong to?**
-See [ROADMAP.md](../../ROADMAP.md).
+See [REFERENCE.md](../../REFERENCE.md).

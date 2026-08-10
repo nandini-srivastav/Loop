@@ -1,4 +1,6 @@
-# UQ Pulse — Product & Engineering Roadmap
+# UQ Pulse — background reference
+
+> Check this when you're making an architecture or scope decision. For what to actually do today, see `PLAN.md`.
 
 *A one-stop events, social, and marketplace platform for University of Queensland students.*
 

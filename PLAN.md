@@ -17,6 +17,7 @@ Assumes ~2–3 focused hours/day, 5 days/week (adjust pace to your actual availa
 - **Day 3** — Interview or message 8–10 UQ students (mix of first-years and later-years) about how they currently find events and what's most annoying. Write down exact quotes — you'll use this language in your UI copy later
 - **Day 4** — Finalise the MVP feature list based on what you heard (compare against the roadmap's Phase 1 list — cut anything nobody mentioned)
 - **Day 5** — Register a domain name, create the GitHub repo from the scaffold provided, set repo to public, add the first 6 issues (see previous message), set up a GitHub Project board with columns: Backlog / This week / In review / Done
+- **Ongoing from Day 5 onward** — enable Supabase automatic backups as soon as any real data exists; wire up basic error monitoring (Sentry or similar) and analytics (Plausible/Vercel Analytics) alongside the Phase 1 deploy (Day 10), not after
 
 ---
 
@@ -55,6 +56,7 @@ Assumes ~2–3 focused hours/day, 5 days/week (adjust pace to your actual availa
 - **Day 27–28** — Fix the top issues from that test. Don't add new features yet — fix friction in what exists
 - **Day 29** — Soft-launch post in 1–2 relevant UQ Facebook groups / course Discords, framed around the exact problem (missed events), not the feature list
 - **Day 30** — Retrospective: what got used, what didn't, what students asked for unprompted. This determines whether Phase 3 proceeds as planned or gets reordered
+- **Around this point, ongoing** — start a weekly 15-minute habit: check in with any launch-partner society that's gone quiet, and log unprompted feedback in one running doc. This keeps Track D (partnerships) and Track A (validation) alive without needing a separate plan to consult
 
 **Ship gate: don't move to Phase 3 until real students are submitting and browsing real events without your prompting.**
 
@@ -80,6 +82,7 @@ Assumes ~2–3 focused hours/day, 5 days/week (adjust pace to your actual availa
 - **Day 37** — Build the event-scoped thread UI on the event detail page (simple flat message list first, no nesting)
 - **Day 38** — Add Supabase Realtime subscription so messages appear live without refresh
 - **Day 39** — Build the interest/partner-finding board (your dance-partner example) as its own tab — list + "post" composer + thumbs-up reaction
+- **Day 35b** — Before the social layer goes live: draft a privacy policy and terms page (you're now handling messaging between students) and a short, plain-language moderation policy (what gets a warning vs an immediate block). Both need to exist before Day 36, not be retrofitted after
 - **Day 40** — **Report and block, before anything else ships in this phase.** A report button on every message/post that flags to your admin view, and a per-user block that hides their content from you
 - **Day 41** — Basic profanity/spam filter on submission (client + server-side check) as a first line of defence, not a replacement for reporting
 - **Day 42** — Rate-limit posting (e.g. max N posts per user per hour) to blunt spam before it starts
@@ -107,7 +110,7 @@ Assumes ~2–3 focused hours/day, 5 days/week (adjust pace to your actual availa
 
 **Goal: reduce reliance on manual submission — this is what actually delivers "every event, one place" at scale.**
 
-- **Day 56** — Legal/ToS research day: read Instagram/Meta Graph API terms and any official UQ events feed terms properly before writing a line of scraper code. Write up what's actually permitted
+- **Day 56** — Legal/ToS research day: read Instagram/Meta Graph API terms and any official UQ events feed terms properly before writing a line of scraper code. Write up what's actually permitted (this can be read earlier than Day 56 if you have spare time in an earlier week — it just needs to be done before any ingestion code, wherever it falls)
 - **Day 57** — If an official UQ/UQU events RSS or calendar feed exists, build the ingestion job for that first — lowest risk, do it regardless of the Instagram outcome
 - **Day 58** — Design the generic ingestion pipeline: raw source → LLM structuring → dedup check → moderation queue → publish (same shape regardless of source)
 - **Day 59** — Build the LLM extraction step: send raw text to the Claude API with a structured-output prompt, get back `{title, date, time, venue, category, organiser}`
@@ -130,6 +133,14 @@ Assumes ~2–3 focused hours/day, 5 days/week (adjust pace to your actual availa
 - **Day 70** — Measure: are recommended events actually getting more RSVPs than average? If not, don't add complexity — go find out why with real users before iterating on the algorithm
 
 ---
+
+## Weekly rhythm — running the non-coding tracks alongside this plan
+
+These aren't separate days, they're a standing weekly habit that runs underneath the whole plan above, from Day 1:
+
+- **Start of each week**: 15–20 min checking for any outreach/partnership follow-ups due
+- **As each screen ships**: a copy pass with real language (from your Day 3 interviews), not placeholder text
+- **End of each week**: log any unprompted student feedback
 
 ## Ongoing — growth, scale, and native app (Week 25 onward, continuous)
 

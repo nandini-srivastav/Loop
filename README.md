@@ -4,7 +4,7 @@
 
 UQ Pulse aggregates society, department, careers, and cultural events from across the University of Queensland into a single feed, with lightweight social tools (event-scoped chat, partner-finding posts), a student marketplace, and personalised recommendations.
 
-**Status:** early / pre-alpha — see [ROADMAP.md](./ROADMAP.md) for the phased plan.
+**Status:** early / pre-alpha — see [PLAN.md](./PLAN.md) for what's being worked on day by day, and [REFERENCE.md](./REFERENCE.md) for architecture/scope background.
 
 ## Why
 
@@ -20,7 +20,7 @@ UQ event info is scattered across dozens of society Instagram pages, department 
 | Ingestion service | Python (Playwright) |
 | AI extraction & recommendations | Claude API |
 
-Full rationale in [ROADMAP.md](./ROADMAP.md#5-suggested-tech-stack).
+Full rationale in [REFERENCE.md](./REFERENCE.md#5-suggested-tech-stack).
 
 ## Project structure
 
@@ -47,9 +47,9 @@ npm run dev
 
 Contributions welcome — see [CONTRIBUTING.md](./CONTRIBUTING.md). Look for issues labeled [`good first issue`](../../issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22).
 
-## Roadmap
+## Plan
 
-See [ROADMAP.md](./ROADMAP.md) for the phased build plan, from MVP through automated event ingestion and AI recommendations.
+See [PLAN.md](./PLAN.md) for the day-by-day build plan. See [REFERENCE.md](./REFERENCE.md) for tech stack, data model, and sourcing-strategy background.
 
 ## License
 
