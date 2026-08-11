@@ -2,7 +2,7 @@
 
 ## Our pledge
 
-We want UQ Pulse's contributor community to be as welcoming as we want the app itself to be for students. We pledge to make participation harassment-free for everyone, regardless of background, identity, or experience level.
+We want Loop's contributor community to be as welcoming as we want the app itself to be for students. We pledge to make participation harassment-free for everyone, regardless of background, identity, or experience level.
 
 ## Expected behaviour
 

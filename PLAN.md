@@ -1,4 +1,4 @@
-# UQ Pulse — day-by-day build plan (solo, React/JS-comfortable)
+# Loop — day-by-day build plan (solo, React/JS-comfortable)
 
 Assumes ~2–3 focused hours/day, 5 days/week (adjust pace to your actual availability — the point is the order and the definition of "done" for each day, not the calendar). Each week states its goal first. Growth/adoption tasks are woven in throughout, not left to the end — a perfectly built app nobody knows about fails the same way a broken one does.
 

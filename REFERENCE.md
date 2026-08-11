@@ -1,16 +1,16 @@
-# UQ Pulse — background reference
+# Loop — background reference
 
 > Check this when you're making an architecture or scope decision. For what to actually do today, see `PLAN.md`.
 
 *A one-stop events, social, and marketplace platform for University of Queensland students.*
 
-> Working name: **UQ Pulse**. Change it before you launch — check it's not trademarked and isn't confusingly close to an official UQ product.
+> Name: **Loop**. Worth a quick trademark/name-collision check before you launch publicly (there are other apps/products called "Loop" in unrelated spaces — check nothing conflicts closely enough to cause confusion or a takedown request), but the name itself is locked in.
 
 ---
 
 ## 1. Problem statement (for your README / pitch)
 
-UQ event information is fragmented across society Instagram pages, department websites, UQU, myUQ, and word of mouth. Students — especially newcomers — routinely miss events they'd have wanted to attend simply because they didn't follow the right page. UQ Pulse aggregates every event in one place, adds light social and practical features around it, and layers in a marketplace and personalisation so the app has daily reasons to open, not just "event night" reasons.
+UQ event information is fragmented across society Instagram pages, department websites, UQU, myUQ, and word of mouth. Students — especially newcomers — routinely miss events they'd have wanted to attend simply because they didn't follow the right page. Loop aggregates every event in one place, adds light social and practical features around it, and layers in a marketplace and personalisation so the app has daily reasons to open, not just "event night" reasons.
 
 ## 2. Guiding principle for sequencing
 

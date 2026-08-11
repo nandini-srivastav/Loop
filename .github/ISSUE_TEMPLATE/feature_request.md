@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: Suggest an idea for UQ Pulse
+about: Suggest an idea for Loop
 labels: enhancement
 ---
 

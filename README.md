@@ -1,14 +1,14 @@
-# UQ Pulse
+# Loop
 
 > Every UQ event, one place. Stop finding out about it after it happened.
 
-UQ Pulse aggregates society, department, careers, and cultural events from across the University of Queensland into a single feed, with lightweight social tools (event-scoped chat, partner-finding posts), a student marketplace, and personalised recommendations.
+Loop aggregates society, department, careers, and cultural events from across the University of Queensland into a single feed, with lightweight social tools (event-scoped chat, partner-finding posts), a student marketplace, and personalised recommendations.
 
 **Status:** early / pre-alpha — see [PLAN.md](./PLAN.md) for what's being worked on day by day, and [REFERENCE.md](./REFERENCE.md) for architecture/scope background.
 
 ## Why
 
-UQ event info is scattered across dozens of society Instagram pages, department sites, and UQU channels. New students in particular miss events they'd have wanted to attend simply because they didn't follow the right account. UQ Pulse fixes the discovery problem first, then builds useful things around it.
+UQ event info is scattered across dozens of society Instagram pages, department sites, and UQU channels. New students in particular miss events they'd have wanted to attend simply because they didn't follow the right account. Loop fixes the discovery problem first, then builds useful things around it.
 
 ## Tech stack
 

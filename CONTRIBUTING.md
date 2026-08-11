@@ -1,4 +1,4 @@
-# Contributing to UQ Pulse
+# Contributing to Loop
 
 Thanks for considering a contribution — this project is built by and for UQ students, so contributions from other students are especially welcome.
 
