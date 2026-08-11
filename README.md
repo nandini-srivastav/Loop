@@ -36,8 +36,8 @@ docs/         # architecture notes, ADRs
 ## Getting started
 
 ```bash
-git clone https://github.com/<your-org>/uq-pulse.git
-cd uq-pulse
+git clone https://github.com/nandini-srivastav/loop.git
+cd loop/apps/web
 cp .env.example .env.local   # fill in Supabase + Maps + Claude API keys
 npm install
 npm run dev
