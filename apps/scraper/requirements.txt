@@ -1,0 +1,2 @@
+# Ingestion service dependencies
+# Add real dependencies (e.g. playwright, requests) as sources are built in PLAN.md Phase 6
