@@ -26,6 +26,12 @@ export default async function EventDetail({
     data: { user },
   } = await supabase.auth.getUser();
 
+  const { data: posterProfile } = await supabase
+    .from("profiles")
+    .select("is_verified_organiser, verified_society_name")
+    .eq("id", event.created_by)
+    .maybeSingle();
+
   const { count: rsvpCount } = await supabase
     .from("rsvps")
     .select("id", { count: "exact", head: true })
@@ -83,8 +89,16 @@ export default async function EventDetail({
       )}
 
       {event.organiser && (
-        <p className="text-sm text-neutral-500 mb-6">
+        <p className="text-sm text-neutral-500 mb-6 flex items-center gap-1.5">
           Organised by {event.organiser}
+          {posterProfile?.is_verified_organiser && (
+            <span
+              title={`Verified: ${posterProfile.verified_society_name ?? "organiser"}`}
+              className="text-emerald-500"
+            >
+              ✓
+            </span>
+          )}
         </p>
       )}
 
