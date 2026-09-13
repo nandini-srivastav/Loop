@@ -98,8 +98,14 @@ export default async function EventDetail({
         />
       </div>
 
-      
-        <a
+      <a
+        href={`/events/${event.id}/calendar`}
+        className="inline-block bg-neutral-200 dark:bg-neutral-800 rounded-lg px-4 py-2 text-sm font-medium mr-3"
+      >
+        Add to calendar
+      </a>
+
+      <a
         href={mapsUrl}
         target="_blank"
         rel="noopener noreferrer"
