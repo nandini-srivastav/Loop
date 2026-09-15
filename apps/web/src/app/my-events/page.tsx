@@ -13,12 +13,12 @@ export default async function MyEvents() {
     redirect("/login");
   }
 
-  const { data: rsvps } = await supabase
+  const { data: rsvps, error: rsvpsError } = await supabase
     .from("rsvps")
     .select("event_id, events(*)")
     .eq("user_id", user.id);
 
-  const { data: saved } = await supabase
+  const { data: saved, error: savedError } = await supabase
     .from("saved_events")
     .select("event_id, events(*)")
     .eq("user_id", user.id);
@@ -30,6 +30,12 @@ export default async function MyEvents() {
       </Link>
 
       <h1 className="text-2xl font-semibold mb-6">My events</h1>
+
+      {(rsvpsError || savedError) && (
+        <p className="text-red-600 text-sm mb-6">
+          Something went wrong loading your events. Try refreshing the page.
+        </p>
+      )}
 
       <h2 className="text-sm font-medium uppercase tracking-wide text-neutral-500 mb-3">
         Going
