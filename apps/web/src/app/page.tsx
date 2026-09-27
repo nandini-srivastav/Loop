@@ -14,7 +14,7 @@ export default async function Home() {
 
   return (
     <main className="min-h-screen p-6 max-w-2xl mx-auto">
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-wrap items-center justify-between gap-2 mb-6">
         <h1 className="text-2xl font-semibold">Loop</h1>
         <div className="flex items-center gap-4">
           <Link href="/submit" className="text-sm text-neutral-500">

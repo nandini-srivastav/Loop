@@ -41,7 +41,7 @@ export default function EventActions({
             : "bg-black text-white dark:bg-white dark:text-black"
         }`}
       >
-        {isRsvped ? "Going ✓" : "RSVP"}
+        {isRsvped ? "Going" : "RSVP"}
       </button>
 
       <button
@@ -49,7 +49,7 @@ export default function EventActions({
         onClick={() => startTransition(() => { toggleSave(eventId); })}
         className="rounded-lg px-4 py-2 text-sm font-medium bg-neutral-200 dark:bg-neutral-800"
       >
-        {isSaved ? "Saved ✓" : "Save"}
+        {isSaved ? "Saved" : "Save"}
       </button>
 
       <span className="text-sm text-neutral-500">{rsvpCount} going</span>
