@@ -45,6 +45,7 @@ export default function InterestBoard({ isSignedIn }: { isSignedIn: boolean }) {
   }
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     loadPosts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
