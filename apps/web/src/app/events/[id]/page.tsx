@@ -2,6 +2,7 @@ import { createClient } from "@/lib/supabase/server";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import EventActions from "./EventActions";
+import EventThread from "./EventThread";
 
 export default async function EventDetail({
   params,
@@ -127,6 +128,7 @@ export default async function EventDetail({
       >
         Get directions
       </a>
+      <EventThread eventId={event.id} isSignedIn={!!user} />
     </main>
   );
 }
