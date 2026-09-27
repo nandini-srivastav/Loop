@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import EventFeed from "./EventFeed";
+import RecommendedEvents from "./RecommendedEvents";
 import Link from "next/link";
 
 export default async function Home() {
@@ -11,6 +12,10 @@ export default async function Home() {
     .eq("status", "approved")
     .gte("start_time", new Date().toISOString())
     .order("start_time", { ascending: true });
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   return (
     <main className="min-h-screen p-6 max-w-2xl mx-auto">
@@ -38,6 +43,7 @@ export default async function Home() {
         </p>
       )}
 
+      {!error && user && <RecommendedEvents userId={user.id} />}
       {!error && <EventFeed events={events ?? []} />}
     </main>
   );
