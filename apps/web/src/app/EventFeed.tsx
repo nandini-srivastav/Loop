@@ -11,7 +11,14 @@ const CATEGORY_COLORS: Record<string, string> = {
   sport: "#B78CFF",
 };
 
-const CATEGORIES = ["all", "society", "careers", "cultural", "academic", "sport"];
+const CATEGORIES = [
+  "all",
+  "society",
+  "careers",
+  "cultural",
+  "academic",
+  "sport",
+];
 
 type Event = {
   id: string;
@@ -79,7 +86,8 @@ export default function EventFeed({ events }: { events: Event[] }) {
 
       {filtered.length === 0 && (
         <p className="text-neutral-500">
-          Nothing matches right now — try a different category or check back soon.
+          Nothing matches right now — try a different category or check back
+          soon.
         </p>
       )}
 
@@ -89,7 +97,9 @@ export default function EventFeed({ events }: { events: Event[] }) {
             key={event.id}
             href={`/events/${event.id}`}
             className="block rounded-xl p-4 border-l-4 bg-neutral-100 dark:bg-neutral-900"
-            style={{ borderLeftColor: CATEGORY_COLORS[event.category] ?? "#999" }}
+            style={{
+              borderLeftColor: CATEGORY_COLORS[event.category] ?? "#999",
+            }}
           >
             <span className="text-xs font-medium uppercase tracking-wide text-neutral-500">
               {event.category}

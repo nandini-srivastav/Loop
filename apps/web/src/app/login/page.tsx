@@ -15,11 +15,15 @@ export default function LoginPage() {
     const domain = email.split("@")[1]?.toLowerCase();
     const isAllowed =
       !!domain &&
-      ALLOWED_DOMAIN_SUFFIXES.some((suffix) => domain === suffix || domain.endsWith(`.${suffix}`));
+      ALLOWED_DOMAIN_SUFFIXES.some(
+        (suffix) => domain === suffix || domain.endsWith(`.${suffix}`),
+      );
 
     if (!isAllowed) {
       setStatus("error");
-      setErrorMessage("Please use your UQ email (@uq.edu.au or @uqconnect.uq.edu.au).");
+      setErrorMessage(
+        "Please use your UQ email (@uq.edu.au or @uqconnect.uq.edu.au).",
+      );
       return;
     }
 
@@ -48,7 +52,10 @@ export default function LoginPage() {
           Check your inbox — we sent a magic link to {email}.
         </p>
       ) : (
-        <form onSubmit={handleSignIn} className="flex flex-col gap-3 w-full max-w-sm">
+        <form
+          onSubmit={handleSignIn}
+          className="flex flex-col gap-3 w-full max-w-sm"
+        >
           <input
             type="email"
             required
@@ -57,7 +64,10 @@ export default function LoginPage() {
             onChange={(e) => setEmail(e.target.value)}
             className="border rounded-md px-3 py-2"
           />
-          <button type="submit" className="bg-black text-white rounded-md px-3 py-2">
+          <button
+            type="submit"
+            className="bg-black text-white rounded-md px-3 py-2"
+          >
             Send magic link
           </button>
           {status === "error" && (

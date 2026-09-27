@@ -20,6 +20,9 @@ export default async function Home() {
           <Link href="/board" className="text-sm text-neutral-500">
             Board
           </Link>
+          <Link href="/marketplace" className="text-sm text-neutral-500">
+            Marketplace
+          </Link>
           <Link href="/submit" className="text-sm text-neutral-500">
             Post event
           </Link>
