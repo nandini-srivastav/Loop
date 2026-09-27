@@ -78,7 +78,9 @@ export default function EventFeed({ events }: { events: Event[] }) {
       </div>
 
       {filtered.length === 0 && (
-        <p className="text-neutral-500">No events match these filters.</p>
+        <p className="text-neutral-500">
+          Nothing matches right now — try a different category or check back soon.
+        </p>
       )}
 
       <div className="flex flex-col gap-3">
