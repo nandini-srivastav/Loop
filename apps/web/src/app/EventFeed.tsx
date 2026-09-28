@@ -11,22 +11,22 @@ const CATEGORY_COLORS: Record<string, string> = {
   sport: "#B78CFF",
 };
 
-const CATEGORIES = [
-  "all",
-  "society",
-  "careers",
-  "cultural",
-  "academic",
-  "sport",
-];
+const CATEGORIES = ["all", "society", "careers", "cultural", "academic", "sport"];
 
 type Event = {
   id: string;
   title: string;
   category: string;
+  categories?: string[];
   start_time: string;
   venue_name: string;
 };
+
+function getCategories(event: Event): string[] {
+  return event.categories && event.categories.length > 0
+    ? event.categories
+    : [event.category];
+}
 
 export default function EventFeed({ events }: { events: Event[] }) {
   const [category, setCategory] = useState("all");
@@ -40,7 +40,7 @@ export default function EventFeed({ events }: { events: Event[] }) {
     endOfWeek.setDate(endOfWeek.getDate() + 7);
 
     return events.filter((event) => {
-      if (category !== "all" && event.category !== category) return false;
+      if (category !== "all" && !getCategories(event).includes(category)) return false;
 
       const start = new Date(event.start_time);
       if (dateFilter === "today" && start > endOfToday) return false;
@@ -86,8 +86,7 @@ export default function EventFeed({ events }: { events: Event[] }) {
 
       {filtered.length === 0 && (
         <p className="text-neutral-500">
-          Nothing matches right now — try a different category or check back
-          soon.
+          Nothing matches right now — try a different category or check back soon.
         </p>
       )}
 
@@ -97,12 +96,10 @@ export default function EventFeed({ events }: { events: Event[] }) {
             key={event.id}
             href={`/events/${event.id}`}
             className="block rounded-xl p-4 border-l-4 bg-neutral-100 dark:bg-neutral-900"
-            style={{
-              borderLeftColor: CATEGORY_COLORS[event.category] ?? "#999",
-            }}
+            style={{ borderLeftColor: CATEGORY_COLORS[event.category] ?? "#999" }}
           >
             <span className="text-xs font-medium uppercase tracking-wide text-neutral-500">
-              {event.category}
+              {getCategories(event).join(" · ")}
             </span>
             <h2 className="font-semibold text-lg mt-1">{event.title}</h2>
             <p className="text-sm text-neutral-500 mt-1">

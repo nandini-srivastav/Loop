@@ -104,6 +104,7 @@ export async function ingestEvent(fields: ExtractedEvent) {
     title: fields.title,
     description: fields.description || null,
     category: fields.category,
+    categories: [fields.category],
     start_time,
     venue_name: fields.venue_name || "TBC",
     venue_address: fields.venue_address || fields.venue_name || "TBC",

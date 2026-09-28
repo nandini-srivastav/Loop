@@ -11,9 +11,7 @@ export default function SubmitForm() {
   return (
     <form action={formAction} className="flex flex-col gap-4">
       <div>
-        <label className="block text-sm text-neutral-500 mb-1">
-          Event title
-        </label>
+        <label className="block text-sm text-neutral-500 mb-1">Event title</label>
         <input
           name="title"
           type="text"
@@ -24,20 +22,20 @@ export default function SubmitForm() {
       </div>
 
       <div>
-        <label className="block text-sm text-neutral-500 mb-1">
-          Category
+        <label className="block text-sm text-neutral-500 mb-2">
+          Categories (pick all that apply)
         </label>
-        <select
-          name="category"
-          required
-          className="w-full border rounded-lg px-3 py-2 bg-transparent"
-        >
+        <div className="flex flex-wrap gap-2">
           {CATEGORIES.map((c) => (
-            <option key={c} value={c} className="bg-white dark:bg-black">
-              {c.charAt(0).toUpperCase() + c.slice(1)}
-            </option>
+            <label
+              key={c}
+              className="flex items-center gap-2 border rounded-full px-3 py-1.5 text-sm capitalize cursor-pointer"
+            >
+              <input type="checkbox" name="categories" value={c} />
+              {c}
+            </label>
           ))}
-        </select>
+        </div>
       </div>
 
       <div className="flex gap-3">
@@ -62,9 +60,7 @@ export default function SubmitForm() {
       </div>
 
       <div>
-        <label className="block text-sm text-neutral-500 mb-1">
-          Venue name
-        </label>
+        <label className="block text-sm text-neutral-500 mb-1">Venue name</label>
         <input
           name="venue_name"
           type="text"
@@ -75,9 +71,7 @@ export default function SubmitForm() {
       </div>
 
       <div>
-        <label className="block text-sm text-neutral-500 mb-1">
-          Venue address
-        </label>
+        <label className="block text-sm text-neutral-500 mb-1">Venue address</label>
         <input
           name="venue_address"
           type="text"
@@ -91,9 +85,7 @@ export default function SubmitForm() {
       </div>
 
       <div>
-        <label className="block text-sm text-neutral-500 mb-1">
-          Organiser
-        </label>
+        <label className="block text-sm text-neutral-500 mb-1">Organiser</label>
         <input
           name="organiser"
           type="text"
@@ -103,9 +95,7 @@ export default function SubmitForm() {
       </div>
 
       <div>
-        <label className="block text-sm text-neutral-500 mb-1">
-          Description
-        </label>
+        <label className="block text-sm text-neutral-500 mb-1">Description</label>
         <textarea
           name="description"
           rows={3}
@@ -114,9 +104,7 @@ export default function SubmitForm() {
         />
       </div>
 
-      {state?.error && (
-        <p className="text-red-600 text-sm">{state.error}</p>
-      )}
+      {state?.error && <p className="text-red-600 text-sm">{state.error}</p>}
 
       <button
         type="submit"

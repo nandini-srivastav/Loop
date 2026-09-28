@@ -14,7 +14,7 @@ export async function submitEvent(prevState: unknown, formData: FormData) {
   }
 
   const title = formData.get("title") as string;
-  const category = formData.get("category") as string;
+  const categories = formData.getAll("categories") as string[];
   const date = formData.get("date") as string;
   const time = formData.get("time") as string;
   const venue_name = formData.get("venue_name") as string;
@@ -22,15 +22,16 @@ export async function submitEvent(prevState: unknown, formData: FormData) {
   const organiser = formData.get("organiser") as string;
   const description = formData.get("description") as string;
 
-  if (!title || !category || !date || !time || !venue_name || !venue_address) {
-    return { error: "Please fill in all required fields." };
+  if (!title || categories.length === 0 || !date || !time || !venue_name || !venue_address) {
+    return { error: "Please fill in all required fields, including at least one category." };
   }
 
   const start_time = new Date(`${date}T${time}`).toISOString();
 
   const { error } = await supabase.from("events").insert({
     title,
-    category,
+    category: categories[0],
+    categories,
     start_time,
     venue_name,
     venue_address,

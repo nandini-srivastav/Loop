@@ -70,7 +70,7 @@ export default async function EventDetail({
       </Link>
 
       <span className="text-xs font-medium uppercase tracking-wide text-neutral-500">
-        {event.category}
+        {(event.categories?.length ? event.categories : [event.category]).join(" · ")}
       </span>
       <h1 className="text-2xl font-semibold mt-1 mb-2">{event.title}</h1>
 
