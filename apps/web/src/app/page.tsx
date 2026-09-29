@@ -3,6 +3,7 @@ import EventFeed from "./EventFeed";
 import RecommendedEvents from "./RecommendedEvents";
 import Link from "next/link";
 import { signOut } from "./actions/auth";
+import UnreadBadge from "./UnreadBadge";
 
 export default async function Home() {
   const supabase = await createClient();
@@ -36,14 +37,20 @@ export default async function Home() {
             My events
           </Link>
           {user ? (
-            <form action={signOut} className="flex items-center gap-2">
-              <Link href="/profile/edit" className="text-sm text-neutral-500 underline">
-                {user.email}
+            <>
+              <Link href="/messages" className="text-sm text-neutral-500">
+                Messages
+                <UnreadBadge userId={user.id} />
               </Link>
-              <button type="submit" className="text-sm underline text-neutral-500">
-                Sign out
-              </button>
-            </form>
+              <form action={signOut} className="flex items-center gap-2">
+                <Link href="/profile/edit" className="text-sm text-neutral-500 underline">
+                  {user.email}
+                </Link>
+                <button type="submit" className="text-sm underline text-neutral-500">
+                  Sign out
+                </button>
+              </form>
+            </>
           ) : (
             <Link href="/login" className="text-sm underline text-neutral-500">
               Sign in
