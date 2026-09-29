@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 
 type Message = {
@@ -105,7 +106,9 @@ export default function EventThread({
           </button>
         </form>
       ) : (
-        <p className="text-sm text-neutral-500">Sign in to join the discussion.</p>
+        <Link href="/login" className="text-sm text-neutral-500 underline">
+          Sign in to join the discussion.
+        </Link>
       )}
     </div>
   );

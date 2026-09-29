@@ -104,6 +104,16 @@ export default function SubmitForm() {
         />
       </div>
 
+      <div>
+        <label className="block text-sm text-neutral-500 mb-1">Cover image (optional)</label>
+        <input
+          name="image"
+          type="file"
+          accept="image/*"
+          className="w-full text-sm"
+        />
+      </div>
+
       {state?.error && <p className="text-red-600 text-sm">{state.error}</p>}
 
       <button

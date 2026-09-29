@@ -14,7 +14,7 @@ export default async function NewListing() {
   }
 
   return (
-    <main className="min-h-screen p-6 max-w-2xl mx-auto">
+    <main className="min-h-screen p-6 max-w-5xl mx-auto">
       <Link href="/marketplace" className="text-sm text-neutral-500 mb-6 block">
         Back to marketplace
       </Link>

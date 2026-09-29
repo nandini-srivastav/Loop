@@ -1,6 +1,6 @@
 export default function Loading() {
   return (
-    <main className="min-h-screen p-6 max-w-2xl mx-auto">
+    <main className="min-h-screen p-6 max-w-5xl mx-auto">
       <div className="h-8 w-24 bg-neutral-200 dark:bg-neutral-800 rounded mb-6 animate-pulse" />
       <div className="flex gap-2 mb-6">
         {[1, 2, 3, 4].map((i) => (

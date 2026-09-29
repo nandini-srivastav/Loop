@@ -9,7 +9,7 @@ export default async function Board() {
   } = await supabase.auth.getUser();
 
   return (
-    <main className="min-h-screen p-6 max-w-2xl mx-auto">
+    <main className="min-h-screen p-6 max-w-5xl mx-auto">
       <Link href="/" className="text-sm text-neutral-500 mb-6 block">
         Back to feed
       </Link>

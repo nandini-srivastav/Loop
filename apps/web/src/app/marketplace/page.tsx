@@ -17,7 +17,7 @@ export default async function Marketplace() {
     .order("created_at", { ascending: false });
 
   return (
-    <main className="min-h-screen p-6 max-w-2xl mx-auto">
+    <main className="min-h-screen p-6 max-w-5xl mx-auto">
       <div className="flex flex-wrap items-center justify-between gap-2 mb-6">
         <Link href="/" className="text-sm text-neutral-500">
           Back to feed

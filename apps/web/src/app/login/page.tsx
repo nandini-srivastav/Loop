@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 
-const ALLOWED_DOMAIN_SUFFIXES = ["uq.edu.au", "uqconnect.edu.au"];
+// TEMP: domain restriction disabled for testing.
+// const ALLOWED_DOMAIN_SUFFIXES = ["uq.edu.au", "uqconnect.edu.au"];
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -12,17 +13,13 @@ export default function LoginPage() {
 
   async function handleSignIn(e: React.FormEvent) {
     e.preventDefault();
-    const domain = email.split("@")[1]?.toLowerCase();
-    const isAllowed =
-      !!domain &&
-      ALLOWED_DOMAIN_SUFFIXES.some(
-        (suffix) => domain === suffix || domain.endsWith(`.${suffix}`),
-      );
+
+    const isAllowed = true; // TEMP: was a domain check, disabled for now
 
     if (!isAllowed) {
       setStatus("error");
       setErrorMessage(
-        "Please use your UQ email (@uq.edu.au or @uqconnect.uq.edu.au).",
+        "Please use your UQ email (@uq.edu.au or @uqconnect.uq.edu.au)."
       );
       return;
     }
@@ -59,7 +56,7 @@ export default function LoginPage() {
           <input
             type="email"
             required
-            placeholder="you@uq.edu.au"
+            placeholder="you@example.com"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className="border rounded-md px-3 py-2"

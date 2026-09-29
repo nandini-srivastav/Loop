@@ -20,6 +20,7 @@ type Event = {
   categories?: string[];
   start_time: string;
   venue_name: string;
+  image_url?: string | null;
 };
 
 function getCategories(event: Event): string[] {
@@ -90,29 +91,39 @@ export default function EventFeed({ events }: { events: Event[] }) {
         </p>
       )}
 
-      <div className="flex flex-col gap-3">
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {filtered.map((event) => (
           <Link
             key={event.id}
             href={`/events/${event.id}`}
-            className="block rounded-xl p-4 border-l-4 bg-neutral-100 dark:bg-neutral-900"
+            className="block rounded-xl overflow-hidden border-l-4 bg-neutral-100 dark:bg-neutral-900"
             style={{ borderLeftColor: CATEGORY_COLORS[event.category] ?? "#999" }}
           >
-            <span className="text-xs font-medium uppercase tracking-wide text-neutral-500">
-              {getCategories(event).join(" · ")}
-            </span>
-            <h2 className="font-semibold text-lg mt-1">{event.title}</h2>
-            <p className="text-sm text-neutral-500 mt-1">
-              {new Date(event.start_time).toLocaleString("en-AU", {
-                weekday: "short",
-                day: "numeric",
-                month: "short",
-                hour: "numeric",
-                minute: "2-digit",
-              })}
-              {" · "}
-              {event.venue_name}
-            </p>
+            {event.image_url && (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={event.image_url}
+                alt={event.title}
+                className="w-full h-32 object-cover"
+              />
+            )}
+            <div className="p-4">
+              <span className="text-xs font-medium uppercase tracking-wide text-neutral-500">
+                {getCategories(event).join(" · ")}
+              </span>
+              <h2 className="font-semibold text-lg mt-1">{event.title}</h2>
+              <p className="text-sm text-neutral-500 mt-1">
+                {new Date(event.start_time).toLocaleString("en-AU", {
+                  weekday: "short",
+                  day: "numeric",
+                  month: "short",
+                  hour: "numeric",
+                  minute: "2-digit",
+                })}
+                {" · "}
+                {event.venue_name}
+              </p>
+            </div>
           </Link>
         ))}
       </div>

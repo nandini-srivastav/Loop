@@ -28,6 +28,28 @@ export async function submitEvent(prevState: unknown, formData: FormData) {
 
   const start_time = new Date(`${date}T${time}`).toISOString();
 
+  let image_url: string | null = null;
+  const imageFile = formData.get("image") as File | null;
+
+  if (imageFile && imageFile.size > 0) {
+    const fileExt = imageFile.name.split(".").pop();
+    const filePath = `${user.id}-${Date.now()}.${fileExt}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from("event-images")
+      .upload(filePath, imageFile);
+
+    if (uploadError) {
+      return { error: `Image upload failed: ${uploadError.message}` };
+    }
+
+    const {
+      data: { publicUrl },
+    } = supabase.storage.from("event-images").getPublicUrl(filePath);
+
+    image_url = publicUrl;
+  }
+
   const { error } = await supabase.from("events").insert({
     title,
     category: categories[0],
@@ -39,6 +61,7 @@ export async function submitEvent(prevState: unknown, formData: FormData) {
     description: description || null,
     created_by: user.id,
     status: "pending",
+    image_url,
   });
 
   if (error) {

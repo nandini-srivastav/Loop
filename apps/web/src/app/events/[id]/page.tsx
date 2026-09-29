@@ -64,11 +64,20 @@ export default async function EventDetail({
   )}`;
 
   return (
-    <main className="min-h-screen p-6 max-w-2xl mx-auto">
+    <main className="min-h-screen p-6 max-w-5xl mx-auto">
       <Link href="/" className="text-sm text-neutral-500 mb-6 block">
         Back to feed
       </Link>
 
+      <div className="max-w-2xl">
+      {event.image_url && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={event.image_url}
+          alt={event.title}
+          className="w-full rounded-xl mb-4 max-h-80 object-cover"
+        />
+      )}
       <span className="text-xs font-medium uppercase tracking-wide text-neutral-500">
         {(event.categories?.length ? event.categories : [event.category]).join(" · ")}
       </span>
@@ -129,6 +138,7 @@ export default async function EventDetail({
         Get directions
       </a>
       <EventThread eventId={event.id} isSignedIn={!!user} />
+      </div>
     </main>
   );
 }
