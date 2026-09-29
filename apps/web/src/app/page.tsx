@@ -37,7 +37,9 @@ export default async function Home() {
           </Link>
           {user ? (
             <form action={signOut} className="flex items-center gap-2">
-              <span className="text-sm text-neutral-500">{user.email}</span>
+              <Link href="/profile/edit" className="text-sm text-neutral-500 underline">
+                {user.email}
+              </Link>
               <button type="submit" className="text-sm underline text-neutral-500">
                 Sign out
               </button>

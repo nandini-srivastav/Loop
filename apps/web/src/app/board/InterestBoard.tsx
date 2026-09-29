@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 
 type Post = {
@@ -8,8 +9,11 @@ type Post = {
   content: string;
   category: string | null;
   created_at: string;
+  is_anonymous: boolean;
+  user_id: string;
   likeCount: number;
   likedByMe: boolean;
+  username: string | null;
 };
 
 const CATEGORIES = ["all", "society", "careers", "cultural", "academic", "sport"];
@@ -18,6 +22,7 @@ export default function InterestBoard({ isSignedIn }: { isSignedIn: boolean }) {
   const [posts, setPosts] = useState<Post[]>([]);
   const [content, setContent] = useState("");
   const [category, setCategory] = useState("society");
+  const [isAnonymous, setIsAnonymous] = useState(false);
   const [filter, setFilter] = useState("all");
   const [userId, setUserId] = useState<string | null>(null);
   const supabase = createClient();
@@ -29,6 +34,7 @@ export default function InterestBoard({ isSignedIn }: { isSignedIn: boolean }) {
       .order("created_at", { ascending: false });
 
     const { data: likes } = await supabase.from("interest_post_likes").select("post_id, user_id");
+    const { data: profiles } = await supabase.from("profiles").select("id, username");
 
     const {
       data: { user },
@@ -38,6 +44,7 @@ export default function InterestBoard({ isSignedIn }: { isSignedIn: boolean }) {
       ...p,
       likeCount: likes?.filter((l) => l.post_id === p.id).length ?? 0,
       likedByMe: !!likes?.some((l) => l.post_id === p.id && l.user_id === user?.id),
+      username: profiles?.find((pr) => pr.id === p.user_id)?.username ?? null,
     }));
 
     setPosts(enriched);
@@ -58,8 +65,10 @@ export default function InterestBoard({ isSignedIn }: { isSignedIn: boolean }) {
       user_id: userId,
       content: content.trim(),
       category,
+      is_anonymous: isAnonymous,
     });
     setContent("");
+    setIsAnonymous(false);
     loadPosts();
   }
 
@@ -91,7 +100,7 @@ export default function InterestBoard({ isSignedIn }: { isSignedIn: boolean }) {
             rows={2}
             className="border rounded-lg px-3 py-2 text-sm bg-transparent"
           />
-          <div className="flex gap-2 items-center">
+          <div className="flex gap-2 items-center flex-wrap">
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
@@ -103,6 +112,14 @@ export default function InterestBoard({ isSignedIn }: { isSignedIn: boolean }) {
                 </option>
               ))}
             </select>
+            <label className="flex items-center gap-1.5 text-sm text-neutral-500">
+              <input
+                type="checkbox"
+                checked={isAnonymous}
+                onChange={(e) => setIsAnonymous(e.target.checked)}
+              />
+              Post anonymously
+            </label>
             <button
               type="submit"
               className="bg-black text-white dark:bg-white dark:text-black rounded-lg px-4 py-1.5 text-sm font-medium"
@@ -138,12 +155,27 @@ export default function InterestBoard({ isSignedIn }: { isSignedIn: boolean }) {
       <div className="flex flex-col gap-3">
         {filtered.map((post) => (
           <div key={post.id} className="bg-neutral-100 dark:bg-neutral-900 rounded-xl p-4">
-            {post.category && (
-              <span className="text-xs uppercase tracking-wide text-neutral-500">
-                {post.category}
-              </span>
-            )}
-            <p className="mt-1 mb-3">{post.content}</p>
+            <div className="flex items-center gap-2 mb-2">
+              {post.is_anonymous || !post.username ? (
+                <span className="font-semibold text-sm" style={{ color: "#B78CFF" }}>
+                  Anonymous
+                </span>
+              ) : (
+                <Link
+                  href={`/profile/${post.username}`}
+                  className="font-semibold text-sm underline"
+                  style={{ color: "#FF5C7A" }}
+                >
+                  @{post.username}
+                </Link>
+              )}
+              {post.category && (
+                <span className="text-xs uppercase tracking-wide text-neutral-500 bg-neutral-200 dark:bg-neutral-800 rounded-full px-2 py-0.5">
+                  {post.category}
+                </span>
+              )}
+            </div>
+            <p className="mb-3">{post.content}</p>
             <div className="flex items-center gap-3">
               <button
                 onClick={() => toggleLike(post.id, post.likedByMe)}
