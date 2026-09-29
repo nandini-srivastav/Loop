@@ -9,12 +9,18 @@ const CATEGORY_COLORS: Record<string, string> = {
   sport: "#B78CFF",
 };
 
+function getCategories(event: { category: string; categories?: string[] | null }): string[] {
+  return event.categories && event.categories.length > 0
+    ? event.categories
+    : [event.category];
+}
+
 export default async function RecommendedEvents({ userId }: { userId: string }) {
   const supabase = await createClient();
 
   const { data: pastRsvps } = await supabase
     .from("rsvps")
-    .select("event_id, events(category)")
+    .select("event_id, events(category, categories)")
     .eq("user_id", userId);
 
   if (!pastRsvps || pastRsvps.length === 0) {
@@ -27,25 +33,29 @@ export default async function RecommendedEvents({ userId }: { userId: string }) 
   pastRsvps.forEach((r) => {
     rsvpedEventIds.add(r.event_id);
     const event = Array.isArray(r.events) ? r.events[0] : r.events;
-    if (event?.category) {
-      categoryCounts[event.category] = (categoryCounts[event.category] || 0) + 1;
+    if (event) {
+      getCategories(event).forEach((c) => {
+        categoryCounts[c] = (categoryCounts[c] || 0) + 1;
+      });
     }
   });
 
-  const topCategory = Object.entries(categoryCounts).sort((a, b) => b[1] - a[1])[0]?.[0];
+  const maxCount = Math.max(...Object.values(categoryCounts));
+  const topCategories = Object.entries(categoryCounts)
+    .filter(([, count]) => count === maxCount)
+    .map(([cat]) => cat);
 
-  if (!topCategory) return null;
-
-  const { data: recommended } = await supabase
+  const { data: allUpcoming } = await supabase
     .from("events")
     .select("*")
     .eq("status", "approved")
-    .eq("category", topCategory)
     .gte("start_time", new Date().toISOString())
-    .order("start_time", { ascending: true })
-    .limit(3);
+    .order("start_time", { ascending: true });
 
-  const filtered = recommended?.filter((e) => !rsvpedEventIds.has(e.id)) ?? [];
+  const filtered = (allUpcoming ?? [])
+    .filter((e) => !rsvpedEventIds.has(e.id))
+    .filter((e) => getCategories(e).some((c) => topCategories.includes(c)))
+    .slice(0, 3);
 
   if (filtered.length === 0) return null;
 
@@ -55,7 +65,7 @@ export default async function RecommendedEvents({ userId }: { userId: string }) 
         Recommended for you
       </h2>
       <p className="text-xs text-neutral-500 mb-3">
-        Because you&apos;ve RSVPed to {topCategory} events before
+        Because you&apos;ve RSVPed to {topCategories.join(" / ")} events before
       </p>
       <div className="flex flex-col gap-3">
         {filtered.map((event) => (
@@ -66,7 +76,7 @@ export default async function RecommendedEvents({ userId }: { userId: string }) 
             style={{ borderLeftColor: CATEGORY_COLORS[event.category] ?? "#999" }}
           >
             <span className="text-xs font-medium uppercase tracking-wide text-neutral-500">
-              {event.category}
+              {getCategories(event).join(" · ")}
             </span>
             <h3 className="font-semibold mt-1">{event.title}</h3>
             <p className="text-sm text-neutral-500 mt-1">

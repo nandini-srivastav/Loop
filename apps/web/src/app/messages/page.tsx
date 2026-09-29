@@ -74,7 +74,7 @@ export default async function Inbox() {
             >
               <div>
                 <p className="font-semibold" style={{ color: "#FF5C7A" }}>
-                  @{r.username}
+                  {r.username}
                 </p>
                 <p className="text-sm text-neutral-500 truncate max-w-xs">{r.lastMessage}</p>
               </div>

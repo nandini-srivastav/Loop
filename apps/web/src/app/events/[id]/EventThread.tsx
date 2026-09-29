@@ -113,7 +113,7 @@ export default function EventThread({
                   className="font-semibold text-xs underline"
                   style={{ color: "#FF5C7A" }}
                 >
-                  @{m.username}
+                  {m.username}
                 </Link>
               )}
             </div>

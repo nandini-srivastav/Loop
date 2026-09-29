@@ -65,7 +65,7 @@ export default async function MessagesPage({
           ← Messages
         </Link>
         <Link href={`/profile/${username}`} className="text-sm underline" style={{ color: "#FF5C7A" }}>
-          @{username}
+          {username}
         </Link>
       </div>
       <DMThread currentUserId={user.id} otherUserId={otherProfile.id} />

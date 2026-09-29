@@ -166,7 +166,7 @@ export default function InterestBoard({ isSignedIn }: { isSignedIn: boolean }) {
                   className="font-semibold text-sm underline"
                   style={{ color: "#FF5C7A" }}
                 >
-                  @{post.username}
+                  {post.username}
                 </Link>
               )}
               {post.category && (

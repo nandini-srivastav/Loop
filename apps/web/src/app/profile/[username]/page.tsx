@@ -77,7 +77,7 @@ export default async function ProfilePage({
             <div className="w-16 h-16 rounded-full bg-neutral-200 dark:bg-neutral-800" />
           )}
           <div>
-            <h1 className="text-xl font-semibold">@{profile.username}</h1>
+            <h1 className="text-xl font-semibold">{profile.username}</h1>
             <p className="text-sm text-neutral-500">
               {followerCount ?? 0} followers · {followingCount ?? 0} following
             </p>

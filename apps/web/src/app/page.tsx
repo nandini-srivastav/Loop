@@ -19,6 +19,16 @@ export default async function Home() {
     data: { user },
   } = await supabase.auth.getUser();
 
+  let myUsername: string | null = null;
+  if (user) {
+    const { data: myProfile } = await supabase
+      .from("profiles")
+      .select("username")
+      .eq("id", user.id)
+      .maybeSingle();
+    myUsername = myProfile?.username ?? null;
+  }
+
   return (
     <main className="min-h-screen p-6 max-w-5xl mx-auto">
       <div className="flex flex-wrap items-center justify-between gap-2 mb-6">
@@ -44,7 +54,7 @@ export default async function Home() {
               </Link>
               <form action={signOut} className="flex items-center gap-2">
                 <Link href="/profile/edit" className="text-sm text-neutral-500 underline">
-                  {user.email}
+                  {myUsername ?? "Set up profile"}
                 </Link>
                 <button type="submit" className="text-sm underline text-neutral-500">
                   Sign out
