@@ -39,7 +39,7 @@ export default function NewListingForm() {
           className="w-full border rounded-lg px-3 py-2 bg-transparent"
         >
           {CATEGORIES.map((c) => (
-            <option key={c} value={c} className="bg-white dark:bg-black">
+            <option key={c} value={c} className="bg-white">
               {c.charAt(0).toUpperCase() + c.slice(1)}
             </option>
           ))}
@@ -54,9 +54,9 @@ export default function NewListingForm() {
           onChange={(e) => setPriceType(e.target.value)}
           className="w-full border rounded-lg px-3 py-2 bg-transparent"
         >
-          <option value="fixed" className="bg-white dark:bg-black">For sale</option>
-          <option value="free" className="bg-white dark:bg-black">Free</option>
-          <option value="loan" className="bg-white dark:bg-black">For loan</option>
+          <option value="fixed" className="bg-white">For sale</option>
+          <option value="free" className="bg-white">Free</option>
+          <option value="loan" className="bg-white">For loan</option>
         </select>
       </div>
 
@@ -89,7 +89,7 @@ export default function NewListingForm() {
       <button
         type="submit"
         disabled={isPending}
-        className="bg-black text-white dark:bg-white dark:text-black rounded-lg px-4 py-2 font-medium"
+        className="bg-black text-white rounded-lg px-4 py-2 font-medium"
       >
         {isPending ? "Posting..." : "List item"}
       </button>

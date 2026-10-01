@@ -53,7 +53,7 @@ export default async function MyEvents() {
             <Link
               key={event.id}
               href={`/events/${event.id}`}
-              className="block rounded-xl p-4 bg-neutral-100 dark:bg-neutral-900"
+              className="block rounded-xl p-4 bg-neutral-100"
             >
               <h3 className="font-semibold">{event.title}</h3>
               <p className="text-sm text-neutral-500 mt-1">
@@ -86,7 +86,7 @@ export default async function MyEvents() {
             <Link
               key={event.id}
               href={`/events/${event.id}`}
-              className="block rounded-xl p-4 bg-neutral-100 dark:bg-neutral-900"
+              className="block rounded-xl p-4 bg-neutral-100"
             >
               <h3 className="font-semibold">{event.title}</h3>
               <p className="text-sm text-neutral-500 mt-1">

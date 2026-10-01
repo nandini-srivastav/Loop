@@ -24,7 +24,7 @@ export default async function Marketplace() {
         </Link>
         <Link
           href="/marketplace/new"
-          className="text-sm bg-black text-white dark:bg-white dark:text-black rounded-lg px-3 py-1.5 font-medium"
+          className="text-sm bg-black text-white rounded-lg px-3 py-1.5 font-medium"
         >
           List an item
         </Link>
@@ -49,7 +49,7 @@ export default async function Marketplace() {
           <Link
             key={listing.id}
             href={`/marketplace/${listing.id}`}
-            className="block bg-neutral-100 dark:bg-neutral-900 rounded-xl overflow-hidden"
+            className="block bg-neutral-100 rounded-xl overflow-hidden"
           >
             {listing.image_url ? (
               // eslint-disable-next-line @next/next/no-img-element
@@ -59,7 +59,7 @@ export default async function Marketplace() {
                 className="w-full aspect-square object-cover"
               />
             ) : (
-              <div className="w-full aspect-square bg-neutral-200 dark:bg-neutral-800" />
+              <div className="w-full aspect-square bg-neutral-200" />
             )}
             <div className="p-3">
               <p className="font-semibold">{listing.title}</p>

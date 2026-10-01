@@ -20,11 +20,11 @@ export default async function EditProfile() {
     .maybeSingle();
 
   return (
-    <main className="min-h-screen p-6 max-w-5xl mx-auto">
+    <main className="min-h-screen p-6">
       <Link href="/" className="text-sm text-neutral-500 mb-6 block">
         Back to feed
       </Link>
-      <div className="max-w-xl">
+      <div className="w-full">
         <h1 className="text-2xl font-semibold mb-6">
           {profile?.username ? "Edit your profile" : "Set up your profile"}
         </h1>

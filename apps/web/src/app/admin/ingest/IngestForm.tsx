@@ -74,7 +74,7 @@ export default function IngestForm() {
       <button
         onClick={handleExtract}
         disabled={status === "extracting" || !rawText.trim()}
-        className="bg-black text-white dark:bg-white dark:text-black rounded-lg px-4 py-2 text-sm font-medium self-start"
+        className="bg-black text-white rounded-lg px-4 py-2 text-sm font-medium self-start"
       >
         {status === "extracting" ? "Extracting..." : "Extract event details"}
       </button>
@@ -108,7 +108,7 @@ export default function IngestForm() {
 
           <button
             onClick={handleSubmit}
-            className="bg-black text-white dark:bg-white dark:text-black rounded-lg px-4 py-2 text-sm font-medium self-start mt-2"
+            className="bg-black text-white rounded-lg px-4 py-2 text-sm font-medium self-start mt-2"
           >
             Add to moderation queue
           </button>

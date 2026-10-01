@@ -59,12 +59,12 @@ export default async function ProfilePage({
     .eq("follower_id", profile.id);
 
   return (
-    <main className="min-h-screen p-6 max-w-5xl mx-auto">
+    <main className="min-h-screen p-6">
       <Link href="/" className="text-sm text-neutral-500 mb-6 block">
         Back to feed
       </Link>
 
-      <div className="max-w-xl">
+      <div className="w-full">
         <div className="flex items-center gap-4 mb-4">
           {profile.avatar_url ? (
             // eslint-disable-next-line @next/next/no-img-element
@@ -74,7 +74,7 @@ export default async function ProfilePage({
               className="w-16 h-16 rounded-full object-cover"
             />
           ) : (
-            <div className="w-16 h-16 rounded-full bg-neutral-200 dark:bg-neutral-800" />
+            <div className="w-16 h-16 rounded-full bg-neutral-200" />
           )}
           <div>
             <h1 className="text-xl font-semibold">{profile.username}</h1>
@@ -101,7 +101,7 @@ export default async function ProfilePage({
         {isOwnProfile ? (
           <Link
             href="/profile/edit"
-            className="inline-block bg-neutral-200 dark:bg-neutral-800 rounded-lg px-4 py-2 text-sm font-medium"
+            className="inline-block bg-neutral-200 rounded-lg px-4 py-2 text-sm font-medium"
           >
             Edit profile
           </Link>

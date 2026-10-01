@@ -1,6 +1,8 @@
 import { createClient } from "@/lib/supabase/server";
 import EventFeed from "./EventFeed";
 import RecommendedEvents from "./RecommendedEvents";
+import FeaturedEvent from "./FeaturedEvent";
+import WelcomeHero from "./WelcomeHero";
 import Link from "next/link";
 import { signOut } from "./actions/auth";
 import UnreadBadge from "./UnreadBadge";
@@ -30,8 +32,18 @@ export default async function Home() {
   }
 
   return (
-    <main className="min-h-screen p-6 max-w-5xl mx-auto">
-      <div className="flex flex-wrap items-center justify-between gap-2 mb-6">
+    <main className="min-h-screen p-6 max-w-5xl mx-auto relative">
+      <div
+        className="glow-decoration"
+        style={{
+          top: "-40px",
+          left: "10%",
+          width: "300px",
+          height: "300px",
+          background: "linear-gradient(135deg, #FF5C7A, #B78CFF)",
+        }}
+      />
+      <div className="flex flex-wrap items-center justify-between gap-2 mb-6 relative" style={{ zIndex: 1 }}>
         <h1 className="text-2xl font-semibold">Loop</h1>
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
           <Link href="/board" className="text-sm text-neutral-500">
@@ -62,12 +74,28 @@ export default async function Home() {
               </form>
             </>
           ) : (
-            <Link href="/login" className="text-sm underline text-neutral-500">
+            <Link
+              href="/login"
+              className="text-sm rounded-full px-4 py-1.5 btn-gradient btn-press font-medium"
+            >
               Sign in
             </Link>
           )}
         </div>
       </div>
+
+      {!user && <WelcomeHero />}
+
+      {user && (
+        <div className="mb-8 relative" style={{ zIndex: 1 }}>
+          <h2 className="text-3xl md:text-4xl font-bold">
+            Hi, {myUsername ?? "there"} 👋
+          </h2>
+          <p className="text-neutral-500 mt-1">Here&apos;s what&apos;s happening on campus.</p>
+        </div>
+      )}
+
+      {!error && <FeaturedEvent />}
 
       {error && (
         <p className="text-red-600 text-sm mb-4">

@@ -35,21 +35,24 @@ export default function EventActions({
       <button
         disabled={isPending}
         onClick={() => startTransition(() => { toggleRsvp(eventId); })}
-        className={`rounded-lg px-4 py-2 text-sm font-medium ${
-          isRsvped
-            ? "bg-neutral-200 dark:bg-neutral-800"
-            : "bg-black text-white dark:bg-white dark:text-black"
+        className={`rounded-full px-6 py-3 text-sm font-semibold btn-press ${
+          isRsvped ? "bg-neutral-900 text-white" : "btn-gradient shadow-lg"
         }`}
       >
-        {isRsvped ? "Going" : "RSVP"}
+        {isRsvped ? "Going ✓" : "RSVP"}
       </button>
 
       <button
         disabled={isPending}
         onClick={() => startTransition(() => { toggleSave(eventId); })}
-        className="rounded-lg px-4 py-2 text-sm font-medium bg-neutral-200 dark:bg-neutral-800"
+        aria-label={isSaved ? "Remove from saved" : "Save event"}
+        className={`w-12 h-12 rounded-full flex items-center justify-center text-lg btn-press border ${
+          isSaved
+            ? "bg-red-50 border-red-200 text-red-500"
+            : "bg-white border-neutral-200 text-neutral-400"
+        }`}
       >
-        {isSaved ? "Saved" : "Save"}
+        {isSaved ? "♥" : "♡"}
       </button>
 
       <span className="text-sm text-neutral-500">{rsvpCount} going</span>

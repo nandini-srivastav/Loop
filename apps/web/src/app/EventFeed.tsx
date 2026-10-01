@@ -60,8 +60,8 @@ export default function EventFeed({ events }: { events: Event[] }) {
             onClick={() => setCategory(c)}
             className={`text-xs font-medium px-3 py-1.5 rounded-full whitespace-nowrap capitalize ${
               category === c
-                ? "bg-black text-white dark:bg-white dark:text-black"
-                : "bg-neutral-200 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300"
+                ? "bg-black text-white"
+                : "bg-neutral-200 text-neutral-600"
             }`}
           >
             {c}
@@ -76,8 +76,8 @@ export default function EventFeed({ events }: { events: Event[] }) {
             onClick={() => setDateFilter(d)}
             className={`text-xs font-medium px-3 py-1.5 rounded-full capitalize ${
               dateFilter === d
-                ? "bg-black text-white dark:bg-white dark:text-black"
-                : "bg-neutral-200 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300"
+                ? "bg-black text-white"
+                : "bg-neutral-200 text-neutral-600"
             }`}
           >
             {d === "all" ? "All dates" : d === "today" ? "Today" : "This week"}
@@ -92,25 +92,40 @@ export default function EventFeed({ events }: { events: Event[] }) {
       )}
 
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-        {filtered.map((event) => (
+        {filtered.map((event, i) => (
           <Link
             key={event.id}
             href={`/events/${event.id}`}
-            className="block rounded-xl overflow-hidden border-l-4 bg-neutral-100 dark:bg-neutral-900"
-            style={{ borderLeftColor: CATEGORY_COLORS[event.category] ?? "#999" }}
+            className="relative block rounded-xl border-l-4 bg-white border border-neutral-200 card-hover animate-fade-in-up"
+            style={{
+              borderLeftColor: CATEGORY_COLORS[event.category] ?? "#999",
+              animationDelay: `${Math.min(i, 8) * 40}ms`,
+            }}
           >
-            {event.image_url && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={event.image_url}
-                alt={event.title}
-                className="w-full h-32 object-cover"
-              />
-            )}
-            <div className="p-4">
-              <span className="text-xs font-medium uppercase tracking-wide text-neutral-500">
+            {event.image_url ? (
+              <div className="relative">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={event.image_url}
+                  alt={event.title}
+                  className="w-full h-32 object-cover rounded-t-xl"
+                />
+                <span
+                  className="absolute top-2 left-2 text-xs font-semibold uppercase tracking-wide text-white rounded-full px-2.5 py-1"
+                  style={{ backgroundColor: CATEGORY_COLORS[event.category] ?? "#999" }}
+                >
+                  {getCategories(event).join(" · ")}
+                </span>
+              </div>
+            ) : (
+              <span
+                className="inline-block text-xs font-semibold uppercase tracking-wide text-white rounded-full px-2.5 py-1 mt-4 ml-4"
+                style={{ backgroundColor: CATEGORY_COLORS[event.category] ?? "#999" }}
+              >
                 {getCategories(event).join(" · ")}
               </span>
+            )}
+            <div className="p-4">
               <h2 className="font-semibold text-lg mt-1">{event.title}</h2>
               <p className="text-sm text-neutral-500 mt-1">
                 {new Date(event.start_time).toLocaleString("en-AU", {

@@ -114,8 +114,8 @@ export default function DMThread({
             <div
               className={`rounded-lg px-3 py-2 text-sm max-w-[70%] ${
                 m.sender_id === currentUserId
-                  ? "bg-black text-white dark:bg-white dark:text-black"
-                  : "bg-neutral-100 dark:bg-neutral-900"
+                  ? "bg-black text-white"
+                  : "bg-neutral-100"
               }`}
             >
               {m.content}
@@ -138,7 +138,7 @@ export default function DMThread({
         />
         <button
           type="submit"
-          className="bg-black text-white dark:bg-white dark:text-black rounded-lg px-4 py-2 text-sm font-medium"
+          className="bg-black text-white rounded-lg px-4 py-2 text-sm font-medium"
         >
           Send
         </button>

@@ -26,7 +26,7 @@ export default function AdminPanel({ events }: { events: PendingEvent[] }) {
       {events.map((event) => (
         <div
           key={event.id}
-          className="rounded-xl p-4 bg-neutral-100 dark:bg-neutral-900"
+          className="rounded-xl p-4 bg-neutral-100"
         >
           <span className="text-xs uppercase tracking-wide text-neutral-500">
             {event.category}
@@ -47,14 +47,14 @@ export default function AdminPanel({ events }: { events: PendingEvent[] }) {
             <button
               disabled={isPending}
               onClick={() => startTransition(() => approveEvent(event.id))}
-              className="bg-black text-white dark:bg-white dark:text-black rounded-lg px-3 py-1.5 text-sm font-medium"
+              className="bg-black text-white rounded-lg px-3 py-1.5 text-sm font-medium"
             >
               Approve
             </button>
             <button
               disabled={isPending}
               onClick={() => startTransition(() => rejectEvent(event.id))}
-              className="bg-neutral-200 dark:bg-neutral-800 rounded-lg px-3 py-1.5 text-sm font-medium"
+              className="bg-neutral-200 rounded-lg px-3 py-1.5 text-sm font-medium"
             >
               Reject
             </button>
@@ -77,7 +77,7 @@ export default function AdminPanel({ events }: { events: PendingEvent[] }) {
                   setVerifiedOrganiser(event.created_by, societyInputs[event.id])
                 )
               }
-              className="bg-neutral-200 dark:bg-neutral-800 rounded-lg px-3 py-1.5 text-sm font-medium whitespace-nowrap"
+              className="bg-neutral-200 rounded-lg px-3 py-1.5 text-sm font-medium whitespace-nowrap"
             >
               Verify organiser
             </button>

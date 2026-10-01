@@ -14,11 +14,11 @@ export default async function Submit() {
   }
 
   return (
-    <main className="min-h-screen p-6 max-w-5xl mx-auto">
+    <main className="min-h-screen p-6">
       <Link href="/" className="text-sm text-neutral-500 mb-6 block">
         Back to feed
       </Link>
-      <div className="max-w-2xl">
+      <div className="w-full">
       <h1 className="text-2xl font-semibold mb-1">Post an event</h1>
       <p className="text-sm text-neutral-500 mb-6">
         Takes under a minute. It&apos;ll show up once approved.

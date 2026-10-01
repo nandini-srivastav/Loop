@@ -26,7 +26,7 @@ export default function ListingMessages({ listingId }: { listingId: string }) {
       />
       <button
         type="submit"
-        className="bg-black text-white dark:bg-white dark:text-black rounded-lg px-4 py-2 text-sm font-medium self-start"
+        className="bg-black text-white rounded-lg px-4 py-2 text-sm font-medium self-start"
       >
         Message seller
       </button>

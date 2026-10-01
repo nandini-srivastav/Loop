@@ -104,7 +104,7 @@ export default function ProfileForm({
       <button
         type="submit"
         disabled={isPending}
-        className="bg-black text-white dark:bg-white dark:text-black rounded-lg px-4 py-2 font-medium self-start"
+        className="bg-black text-white rounded-lg px-4 py-2 font-medium self-start"
       >
         {isPending ? "Saving..." : "Save profile"}
       </button>

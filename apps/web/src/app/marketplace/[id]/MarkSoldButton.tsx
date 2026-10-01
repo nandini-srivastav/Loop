@@ -17,7 +17,7 @@ export default function MarkSoldButton({
     <button
       disabled={isPending}
       onClick={() => startTransition(() => { markListingStatus(listingId, label); })}
-      className="bg-neutral-200 dark:bg-neutral-800 rounded-lg px-4 py-2 text-sm font-medium"
+      className="bg-neutral-200 rounded-lg px-4 py-2 text-sm font-medium"
     >
       Mark as {label}
     </button>

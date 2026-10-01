@@ -100,7 +100,7 @@ export default function EventThread({
         {messages.map((m) => (
           <div
             key={m.id}
-            className="bg-neutral-100 dark:bg-neutral-900 rounded-lg px-3 py-2 text-sm"
+            className="bg-neutral-100 rounded-lg px-3 py-2 text-sm"
           >
             <div className="mb-1">
               {m.is_anonymous || !m.username ? (
@@ -135,7 +135,7 @@ export default function EventThread({
             />
             <button
               type="submit"
-              className="bg-black text-white dark:bg-white dark:text-black rounded-lg px-4 py-2 text-sm font-medium"
+              className="bg-black text-white rounded-lg px-4 py-2 text-sm font-medium"
             >
               Send
             </button>

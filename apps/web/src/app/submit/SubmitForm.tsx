@@ -119,7 +119,7 @@ export default function SubmitForm() {
       <button
         type="submit"
         disabled={isPending}
-        className="bg-black text-white dark:bg-white dark:text-black rounded-lg px-4 py-2 font-medium"
+        className="bg-black text-white rounded-lg px-4 py-2 font-medium"
       >
         {isPending ? "Submitting..." : "Submit for review"}
       </button>

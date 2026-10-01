@@ -67,27 +67,52 @@ export default async function RecommendedEvents({ userId }: { userId: string }) 
       <p className="text-xs text-neutral-500 mb-3">
         Because you&apos;ve RSVPed to {topCategories.join(" / ")} events before
       </p>
-      <div className="flex flex-col gap-3">
-        {filtered.map((event) => (
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {filtered.map((event, i) => (
           <Link
             key={event.id}
             href={`/events/${event.id}`}
-            className="block rounded-xl p-4 border-l-4 bg-neutral-100 dark:bg-neutral-900"
-            style={{ borderLeftColor: CATEGORY_COLORS[event.category] ?? "#999" }}
+            className="relative block rounded-xl border-l-4 bg-white border border-neutral-200 card-hover animate-fade-in-up"
+            style={{
+              borderLeftColor: CATEGORY_COLORS[event.category] ?? "#999",
+              animationDelay: `${i * 40}ms`,
+            }}
           >
-            <span className="text-xs font-medium uppercase tracking-wide text-neutral-500">
-              {getCategories(event).join(" · ")}
-            </span>
-            <h3 className="font-semibold mt-1">{event.title}</h3>
-            <p className="text-sm text-neutral-500 mt-1">
-              {new Date(event.start_time).toLocaleDateString("en-AU", {
-                weekday: "short",
-                day: "numeric",
-                month: "short",
-              })}
-              {" · "}
-              {event.venue_name}
-            </p>
+            {event.image_url ? (
+              <div className="relative">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={event.image_url}
+                  alt={event.title}
+                  className="w-full h-32 object-cover rounded-t-xl"
+                />
+                <span
+                  className="absolute top-2 left-2 text-xs font-semibold uppercase tracking-wide text-white rounded-full px-2.5 py-1"
+                  style={{ backgroundColor: CATEGORY_COLORS[event.category] ?? "#999" }}
+                >
+                  {getCategories(event).join(" · ")}
+                </span>
+              </div>
+            ) : (
+              <span
+                className="inline-block text-xs font-semibold uppercase tracking-wide text-white rounded-full px-2.5 py-1 mt-4 ml-4"
+                style={{ backgroundColor: CATEGORY_COLORS[event.category] ?? "#999" }}
+              >
+                {getCategories(event).join(" · ")}
+              </span>
+            )}
+            <div className="p-4">
+              <h3 className="font-semibold">{event.title}</h3>
+              <p className="text-sm text-neutral-500 mt-1">
+                {new Date(event.start_time).toLocaleDateString("en-AU", {
+                  weekday: "short",
+                  day: "numeric",
+                  month: "short",
+                })}
+                {" · "}
+                {event.venue_name}
+              </p>
+            </div>
           </Link>
         ))}
       </div>

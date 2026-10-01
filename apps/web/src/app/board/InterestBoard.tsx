@@ -107,7 +107,7 @@ export default function InterestBoard({ isSignedIn }: { isSignedIn: boolean }) {
               className="border rounded-lg px-2 py-1.5 text-sm bg-transparent"
             >
               {CATEGORIES.filter((c) => c !== "all").map((c) => (
-                <option key={c} value={c} className="bg-white dark:bg-black">
+                <option key={c} value={c} className="bg-white">
                   {c.charAt(0).toUpperCase() + c.slice(1)}
                 </option>
               ))}
@@ -122,7 +122,7 @@ export default function InterestBoard({ isSignedIn }: { isSignedIn: boolean }) {
             </label>
             <button
               type="submit"
-              className="bg-black text-white dark:bg-white dark:text-black rounded-lg px-4 py-1.5 text-sm font-medium"
+              className="bg-black text-white rounded-lg px-4 py-1.5 text-sm font-medium"
             >
               Post
             </button>
@@ -139,8 +139,8 @@ export default function InterestBoard({ isSignedIn }: { isSignedIn: boolean }) {
             onClick={() => setFilter(c)}
             className={`text-xs font-medium px-3 py-1.5 rounded-full whitespace-nowrap capitalize ${
               filter === c
-                ? "bg-black text-white dark:bg-white dark:text-black"
-                : "bg-neutral-200 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-300"
+                ? "bg-black text-white"
+                : "bg-neutral-200 text-neutral-600"
             }`}
           >
             {c}
@@ -154,7 +154,7 @@ export default function InterestBoard({ isSignedIn }: { isSignedIn: boolean }) {
 
       <div className="flex flex-col gap-3">
         {filtered.map((post) => (
-          <div key={post.id} className="bg-neutral-100 dark:bg-neutral-900 rounded-xl p-4">
+          <div key={post.id} className="bg-neutral-100 rounded-xl p-4">
             <div className="flex items-center gap-2 mb-2">
               {post.is_anonymous || !post.username ? (
                 <span className="font-semibold text-sm" style={{ color: "#B78CFF" }}>
@@ -170,7 +170,7 @@ export default function InterestBoard({ isSignedIn }: { isSignedIn: boolean }) {
                 </Link>
               )}
               {post.category && (
-                <span className="text-xs uppercase tracking-wide text-neutral-500 bg-neutral-200 dark:bg-neutral-800 rounded-full px-2 py-0.5">
+                <span className="text-xs uppercase tracking-wide text-neutral-500 bg-neutral-200 rounded-full px-2 py-0.5">
                   {post.category}
                 </span>
               )}
@@ -182,8 +182,8 @@ export default function InterestBoard({ isSignedIn }: { isSignedIn: boolean }) {
                 disabled={!isSignedIn}
                 className={`text-xs px-2.5 py-1 rounded-full ${
                   post.likedByMe
-                    ? "bg-black text-white dark:bg-white dark:text-black"
-                    : "bg-neutral-200 dark:bg-neutral-800"
+                    ? "bg-black text-white"
+                    : "bg-neutral-200"
                 }`}
               >
                 👍 {post.likeCount}

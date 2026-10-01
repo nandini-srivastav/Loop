@@ -32,8 +32,8 @@ export default function FollowButton({
         }
         className={`rounded-lg px-4 py-2 text-sm font-medium ${
           isFollowing
-            ? "bg-neutral-200 dark:bg-neutral-800"
-            : "bg-black text-white dark:bg-white dark:text-black"
+            ? "bg-neutral-200"
+            : "bg-black text-white"
         }`}
       >
         {isFollowing ? "Following" : "Follow"}
