@@ -50,7 +50,7 @@ You will need a Supabase project with the migrations in supabase/migrations appl
 
 ## Known limitations
 
-Being upfront about what is not finished: mobile layout has some outstanding responsiveness issues on certain pages, some secondary pages such as profile, messages, and forms are narrower than ideal on very wide desktop screens, and the apps/scraper Python service is a placeholder, since real-world event scraping would need its own terms-of-service and legal review before being built out, as noted in REFERENCE.md.
+Being upfront about what is not finished: a few secondary pages (profile, messages, forms) are narrower than ideal on very wide desktop screens, and the apps/scraper Python service is a placeholder, since real-world event scraping would need its own terms-of-service and legal review before being built out, as noted in REFERENCE.md.
 
 ## Contributing
 
